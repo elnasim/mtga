@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <nuxt-link to="/" class="header-link">Главная</nuxt-link>
-    <nuxt-link to="#" class="header-link">Карты</nuxt-link>
+    <nuxt-link to="/cards" class="header-link">Карты</nuxt-link>
     <nuxt-link to="/streams" class="header-link">Стримы</nuxt-link>
   </header>
 </template>
