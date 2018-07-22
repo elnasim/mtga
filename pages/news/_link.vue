@@ -1,6 +1,6 @@
 <template>
   <div class="article-page">
-    <div class="article-page-img" :style="'background-image: url('+ getContent.img +')'"></div>
+    <div class="article-page-img" :style="'background-image: url(/'+ getContent.img +')'"></div>
     <div class="container">
       <h1 class="article-page-title">{{getContent.title}}</h1>
       <div class="article-page-content" v-html="getContent.content"></div>
