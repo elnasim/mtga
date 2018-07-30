@@ -1,9 +1,12 @@
 <template>
-  <div class="article-page">
-    <div class="article-page-img" :style="'background-image: url(/'+ getContent.img +')'"></div>
-    <div class="container">
-      <h1 class="article-page-title">{{getContent.title}}</h1>
-      <div class="article-page-content" v-html="getContent.content"></div>
+  <div>
+    <div class="isloading" v-show="isLoading">Загрузка...</div>
+    <div class="article-page">
+      <div class="article-page-img" :style="'background-image: url(/'+ data.img +')'"></div>
+      <div class="container">
+        <h1 class="article-page-title">{{data.title}}</h1>
+        <div class="article-page-content" v-html="data.content"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -12,29 +15,28 @@
   export default {
     data() {
       return {
-        data: this.$store.state.articles,
+        data: [],
+        isLoading: true
       }
     },
     asyncData: function (context) {
       let link = context.params.link;
       return {link: link};
     },
-    computed: {
-      getContent() {
-        const content = this.data.filter(item => item.link === this.link);
-        return content[0];
-      }
-    },
     mounted() {
+      fetch('http://localhost:8000/articles/id?id=' + this.link).then(res => res.json()).then((result) => {
+        this.data = result[0];
+        this.isLoading = false;
+      })
     }
   }
 </script>
 
 <style lang="scss">
-  .article-page{
+  .article-page {
     min-height: 90vh;
   }
-  
+
   .article-page-img {
     width: 100%;
     background-color: #000000;

@@ -38,8 +38,7 @@ module.exports = {
   },
   generate: {
     routes: [
-      '/streams',
-      'news/statya-9'
+      '/streams'
     ]
   }
 };

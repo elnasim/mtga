@@ -1,12 +1,15 @@
 <template>
-  <div class="container">
-    <div class="streams">
-      <Stream v-for="stream in streams"
-              :key="stream.id"
-              :title="stream.title"
-              :img="stream.thumbnail_url"
-              :link="stream.user_id"
-      />
+  <div>
+    <div class="isloading" v-show="isLoading">Загрузка...</div>
+    <div class="container">
+      <div class="streams">
+        <Stream v-for="stream in streams"
+                :key="stream.id"
+                :title="stream.title"
+                :img="stream.thumbnail_url"
+                :link="stream.user_id"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -18,7 +21,8 @@
     components: {Stream},
     data() {
       return {
-        streams: ''
+        streams: '',
+        isLoading: true
       }
     },
     mounted() {
@@ -35,7 +39,7 @@
           .then(res => res.json())
           .then((result) => {
             this.streams = result.data;
-            console.log('-->', this.streams)
+            this.isLoading = false
           });
     }
   }
