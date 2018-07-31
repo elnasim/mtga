@@ -30,7 +30,7 @@
 
     },
     mounted() {
-      fetch('http://localhost:8000/articles').then(res => res.json()).then((result) => {
+      fetch('http://89.108.99.183:8000/articles').then(res => res.json()).then((result) => {
         this.articles = result;
         this.isLoading = false;
       })

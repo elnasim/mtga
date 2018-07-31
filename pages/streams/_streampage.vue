@@ -1,13 +1,23 @@
 <template>
   <div class="stream-page">
-    <iframe
-    :src="'//player.twitch.tv/?channel=' + user_name"
-    height="600"
-    width="100%"
-    frameBorder="<frameborder>"
-    scrolling="<scrolling>"
-    allowFullScreen="<allowfullscreen>">
-    </iframe>
+    <div class="stream-page-title">{{user_name}}</div>
+    <div class="stream">      
+      <iframe class="stream-iframe"
+              :src="'//player.twitch.tv/?channel=' + user_name"
+              height="600"
+              width="100%"
+              frameBorder="<frameborder>"
+              scrolling="<scrolling>"
+              allowFullScreen="<allowfullscreen>">
+      </iframe>
+    </div>
+    <div class="chat">
+      <iframe class="stream-chat"
+              scrolling="<scrolling>"
+              id="chat_embed"
+              :src="'http://www.twitch.tv/embed/'+ user_name +'/chat'">
+      </iframe>
+    </div>
   </div>
 </template>
 
@@ -16,7 +26,7 @@
     data() {
       return {
         user_name: '',
-        title: ''
+        viewers: ''
       }
     },
     asyncData(context) {
@@ -43,5 +53,40 @@
 </script>
 
 <style scoped lang="scss">
+  .stream-page {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 50px 0;
+  }
+  
+  .stream-page-title{
+    width: 100%;
+    margin-bottom: 30px;
+    text-align: center;
+    padding: 0 15px;
+    font-size: 36px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+  }
+
+  .stream {
+    width: 60%;
+    padding: 0 20px;
+  }
+
+  .stream-iframe {
+    border: none;
+  }
+
+  .chat {
+    width: 40%;
+    padding: 0 20px;
+  }
+  
+  .stream-chat{
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
 
 </style>

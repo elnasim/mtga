@@ -24,9 +24,16 @@
       return {link: link};
     },
     mounted() {
-      fetch('http://localhost:8000/articles/id?id=' + this.link).then(res => res.json()).then((result) => {
-        this.data = result[0];
-        this.isLoading = false;
+      fetch('http://89.108.99.183:8000/articles/id?id=' + this.link).then(res => res.json()).then((result) => {
+        if (result == '') {
+          this.data = {
+            title: 'Статья не найдена'
+          };
+          this.isLoading = false
+        } else {
+          this.data = result[0];
+          this.isLoading = false;
+        }
       })
     }
   }
@@ -65,6 +72,7 @@
     p {
       padding: 10px 0;
       width: 100%;
+      line-height: 1.5;
     }
     img {
       margin: 0 auto;

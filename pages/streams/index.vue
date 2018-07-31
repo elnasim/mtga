@@ -38,6 +38,7 @@
       fetch('https://api.twitch.tv/helix/streams?game_id=2748&language=ru', myInit)
           .then(res => res.json())
           .then((result) => {
+            console.log('-->', result.data);
             this.streams = result.data;
             this.isLoading = false
           });
